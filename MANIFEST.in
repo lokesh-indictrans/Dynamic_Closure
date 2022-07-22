@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include dynamic_closure *.css
+recursive-include dynamic_closure *.csv
+recursive-include dynamic_closure *.html
+recursive-include dynamic_closure *.ico
+recursive-include dynamic_closure *.js
+recursive-include dynamic_closure *.json
+recursive-include dynamic_closure *.md
+recursive-include dynamic_closure *.png
+recursive-include dynamic_closure *.py
+recursive-include dynamic_closure *.svg
+recursive-include dynamic_closure *.txt
+recursive-exclude dynamic_closure *.pyc
