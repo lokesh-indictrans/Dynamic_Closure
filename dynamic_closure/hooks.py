@@ -31,7 +31,11 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Item Attribute":["customizations/item_attribute/item_attribute.js"],
+    "Quotation":["customizations/quotation/quotation.js"],
+    "BOM":["customizations/bom/bom.js"]
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -95,13 +99,18 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "Item Attribute": {
+        "validate": ["dynamic_closure.customizations.item_attribute.item_attribute.validate"]
+    },
+    "Quotation": {
+        "validate": ["dynamic_closure.customizations.quotation.quotation.validate"]
+    },
+    "Sales Order": {
+        "validate": ["dynamic_closure.customizations.sales_order.sales_order.validate"],
+        "on_submit": ["dynamic_closure.customizations.sales_order.sales_order.on_submit"]
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -123,6 +132,8 @@ app_license = "MIT"
 # 		"dynamic_closure.tasks.monthly"
 # 	]
 # }
+
+fixtures=['Property Setter','Custom Field','Print Format','Report','Print Settings','Role']
 
 # Testing
 # -------
