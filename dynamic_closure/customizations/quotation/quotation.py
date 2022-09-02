@@ -11,7 +11,7 @@ def validate(doc, method=None):
 	pass
 
 @frappe.whitelist()
-def create_cpq(item,item_name,uom,data,doc):
+def create_cpq(item,item_name,uom,data,doc,qty):
 	data = json.loads(data)
 	doc = json.loads(doc)
 	cpq_doc = frappe.new_doc("Quotation Item CPQ")
@@ -30,6 +30,7 @@ def create_cpq(item,item_name,uom,data,doc):
 		cpq_doc.operations = bom_doc.get('operations')
 		cpq_doc.items = bom_doc.get('items')
 		cpq_doc.quotation = doc.get('name')
+		cpq_doc.item_qty = qty
 
 		for row in cpq_doc.items:
 			if row.get('bom'):
@@ -53,6 +54,11 @@ def create_cpq(item,item_name,uom,data,doc):
 
 			if not row.rate:
 				row.rate = frappe.get_value("Item Price",{"price_list":doc.get('selling_price_list'),"item_name":row.get("item_code")},"price_list_rate")
+			
+			if uom == "Inch" and row.uom == "Feet":
+				row.qty = flt(row.pieces)*flt(qty)/12
+			else:
+				row.qty = 1
 			row.amount = flt(row.rate*row.qty,2)
 			total_cost += flt(row.amount,2)
 

@@ -13,6 +13,7 @@
   "price_list_section",
   "price_list",
   "column_break_6",
+  "item_qty",
   "currency",
   "quotation",
   "operations_section",
@@ -107,11 +108,17 @@
    "fieldname": "total_cost",
    "fieldtype": "Float",
    "label": "Total Cost"
+  },
+  {
+   "fieldname": "item_qty",
+   "fieldtype": "Float",
+   "label": "Item Qty",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-08-05 00:50:07.954316",
+ "modified": "2022-09-02 14:29:30.931431",
  "modified_by": "Administrator",
  "module": "Dynamic Closure",
  "name": "Quotation Item CPQ",
