@@ -10,7 +10,6 @@ from erpnext.controllers.item_variant import get_variant,create_variant
 
 def validate(doc, method=None):
 	for row in doc.items:
-
 		qic = frappe.get_value("Quotation Item CPQ",{"item":row.item_code,"quotation":row.prevdoc_docname},"name")
 
 		if qic:
@@ -47,7 +46,7 @@ def on_submit(doc, method=None):
 					itm.update({"item_code":variant,"item_name":variant})
 			bom_doc.flags.ignore_permissions = True
 			bom_doc.save()
-			bom_doc.submit()
+			# bom_doc.submit()
 
 
 				
